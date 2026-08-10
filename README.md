@@ -5,7 +5,7 @@ games) that checks the thing LOOT doesn't: **left-pane mod priority.**
 
 LOOT sorts your plugin load order (the right pane) and does it well.
 Nothing automatically checks whether your *mod* priority (the left pane) is
-correct. That's the gap this tool fills -- the most common silently-broken
+correct. That's the gap this tool fills. The most common silently broken
 setup is generated output (FNIS, Nemesis, BodySlide, DynDOLOD) sitting at
 the wrong priority and getting overwritten by the very mods it was
 generated to unify. The game doesn't crash. It just quietly uses the wrong
@@ -14,11 +14,13 @@ files.
 ## Read-only. No network. No telemetry.
 
 This tool never writes, modifies, or deletes anything in your MO2 install.
-It makes no network calls of any kind -- no Nexus API, no update checks,
+It makes no network calls of any kind. Absolutely no Nexus API, no update checks,
 nothing. It only reads `modlist.txt`, `plugins.txt`, `loadorder.txt`,
 `meta.ini` files, and plugin headers (first ~4KB only, never a full
 plugin). Modders are justifiably wary of tools that touch their setups;
 this one only looks.
+
+Heads up that I'm going to see your mod list, NSFW picks and all, and honestly? No judgment. We all mod for our own reasons and yours are safe with me. Send your build over exactly as it is, questionable armor mods included, because that messy real setup is precisely the kind I need. 
 
 **MO2 itself holds `modlist.txt` and `plugins.txt` in memory while running
 and rewrites them on exit.** This tool only reads them, so it's safe to run
