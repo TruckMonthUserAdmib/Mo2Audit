@@ -1,0 +1,78 @@
+name: Tester Report
+description: Share your mo2audit results and tell me which findings were right or wrong
+title: "[Tester Report] "
+labels: ["tester-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing mo2audit! The tool is read-only and never changed anything in your setup.
+
+        The single most useful thing you can give me is your judgment: which findings were real problems and which were false alarms. You know your build and I don't, so that's the data that actually makes the tool better.
+
+        You can open findings.json in any text editor first to see exactly what you're sharing.
+  - type: dropdown
+    id: game-version
+    attributes:
+      label: Skyrim version
+      options:
+        - Special Edition (SE)
+        - Anniversary Edition (AE)
+        - VR
+        - Not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: mo2-instance
+    attributes:
+      label: MO2 instance type
+      options:
+        - Portable
+        - Global
+        - Not sure
+    validations:
+      required: false
+  - type: input
+    id: mod-count
+    attributes:
+      label: Roughly how many mods or plugins?
+      placeholder: "e.g. about 200"
+    validations:
+      required: false
+  - type: textarea
+    id: findings-json
+    attributes:
+      label: Your findings.json
+      description: Drag and drop your findings.json file into this box to attach it (preferred), or paste its contents. This is the complete data from your run.
+      placeholder: Drag findings.json here, or paste its contents.
+    validations:
+      required: true
+  - type: textarea
+    id: false-alarms
+    attributes:
+      label: Did anything look wrong? (most important)
+      description: Which findings, if any, were false alarms the tool got wrong? Name the mods or the check and a quick word on why it's actually fine. If everything looked correct, just write "nothing looked wrong."
+      placeholder: "e.g. It flagged mod X overriding mod Y as possibly unintended, but that's intentional in my setup because..."
+    validations:
+      required: true
+  - type: textarea
+    id: missed-problems
+    attributes:
+      label: Did it miss anything you know about?
+      description: Any problem you already know exists in your build that the tool did NOT catch. This is just as valuable as false alarms.
+    validations:
+      required: false
+  - type: textarea
+    id: errors
+    attributes:
+      label: Any errors or crashes?
+      description: Did it fail to run, throw a traceback, or behave oddly? Paste anything relevant.
+    validations:
+      required: false
+  - type: textarea
+    id: impressions
+    attributes:
+      label: Anything else?
+      description: Optional. General impressions, confusion, or suggestions.
+    validations:
+      required: false

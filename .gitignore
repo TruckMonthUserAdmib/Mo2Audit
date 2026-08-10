@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+config.json
+*.log
+
+# Local run output -- never commit: report dumps contain real mod names and
+# real install paths. Deliberately NOT a blanket `*.txt`: fixtures/*.txt and
+# tests/fixtures/*.txt are tracked acceptance data and must stay trackable.
+# Patterns are root-anchored so nothing under a fixtures dir can ever match.
+/audit-output.txt
+/*-output.txt
+/findings.json
+/report.json
+/report.md
+.claude/
+.pytest_cache/
+*.egg-info/
