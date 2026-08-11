@@ -1,6 +1,6 @@
 # MO2 Load Order Auditor
 
-A read-only auditor for Mod Organizer 2 (Skyrim SE/AE and similar Bethesda
+A read-only auditor that is my first Claude Code project for Mod Organizer 2 (Skyrim SE/AE and similar Bethesda
 games) that checks the thing LOOT doesn't: **left-pane mod priority.**
 
 LOOT sorts your plugin load order (the right pane) and does it well.
@@ -20,7 +20,7 @@ nothing. It only reads `modlist.txt`, `plugins.txt`, `loadorder.txt`,
 plugin). Modders are justifiably wary of tools that touch their setups;
 this one only looks.
 
-Heads up that I'm going to see your mod list, NSFW picks and all, and honestly? No judgment. We all mod for our own reasons and yours are safe with me. Send your build over exactly as it is, questionable armor mods included, because that messy real setup is precisely the kind I need. 
+Heads up that I'm going to see your mod list if your apart of helping me collect data, NSFW picks and all. No judgment from me. We all mod for our own reasons and yours are safe with me. Send your build over exactly as it is, questionable armor mods included, because that messy real setup is precisely the kind I need. 
 
 **MO2 itself holds `modlist.txt` and `plugins.txt` in memory while running
 and rewrites them on exit.** This tool only reads them, so it's safe to run
