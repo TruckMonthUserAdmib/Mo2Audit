@@ -10,6 +10,8 @@ doesn't catch — things like a generated FNIS or BodySlide output mod being
 overwritten by something above it, or a mod that's disabled while its plugin
 is still ticked.
 
+https://github.com/user-attachments/assets/98a912d9-2768-4c0e-969d-abb6340725c3
+
 **It never changes anything.** It only reads files, and it makes no network
 calls at all — nothing is uploaded, nothing phones home. You can run it with
 MO2 open.
