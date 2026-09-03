@@ -1,8 +1,9 @@
+
 # How to test the MO2 Load Order Auditor
 
 Thanks for helping test this. It should take about five minutes.
 
-## What this is
+## What Is MO2-Auditor?
 
 It's a read-only auditor for your Mod Organizer 2 setup. It reads your
 left-pane mod priority and your plugin load order and flags problems LOOT
@@ -84,6 +85,13 @@ folder is that path plus `\profiles\<YourProfileName>`.
 address bar. If a folder opens with your instance in it, you're on a global
 instance. Navigate into it → `profiles` → your profile, then copy the path
 from the address bar.
+
+
+## This is what the file should look like!
+
+<img width="607" height="733" alt="Screenshot 2026-09-03 162747" src="https://github.com/user-attachments/assets/8e761032-882d-44ec-8c5a-c976f1d8208a" />
+
+##
 
 ### 4. Run it
 
