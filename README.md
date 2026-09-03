@@ -1,31 +1,34 @@
 # MO2 Load Order Auditor
 
-A read-only auditor that is my first Claude Code project for Mod Organizer 2 (Skyrim SE/AE and similar Bethesda
-games) that checks the thing LOOT doesn't: **left-pane mod priority.**
+A read-only auditor for Mod Organizer 2 (Skyrim SE/AE and Oldrim so far) that checks the thing LOOT doesn't: **left-pane mod priority.** My goal is to turn it into a plugin for MO2, and I need folks to test it.
 
-LOOT sorts your plugin load order (the right pane) and does it well.
-Nothing automatically checks whether your *mod* priority (the left pane) is
-correct. That's the gap this tool fills. The most common silently broken
-setup is generated output (FNIS, Nemesis, BodySlide, DynDOLOD) sitting at
-the wrong priority and getting overwritten by the very mods it was
-generated to unify. The game doesn't crash. It just quietly uses the wrong
-files.
+## A quick note on how this was built
+
+Yeah, it's vibe coded, and I'm happy to say so up front. I'm a hobbyist, not a professional developer, and I made this with a lot of AI help because that's how I can build something useful while I'm still learning.
+
+I really wanted to make something semi-useful, and this is the product so far. I'm aware that seasoned modders will have no use for this, but I think maybe one day it could guide new folks into the modding community. I've tested the read-out-only auditor on both my SE and AE builds. It's got a few errors I still need to adjust (they're mentioned in the known errors below), but I thought I'd put it up here anyway.
+
+This little half-made program is still a major work in progress. I've learned a lot so far and can't wait to keep adding to and solving problems with this little auditor.
+
+## What it does
+
+LOOT sorts your plugin load order (the right pane) and does it well. Nothing automatically checks whether your *mod* priority (the left pane) is correct. That's the gap this tool fills. The most common silently broken setup is generated output (FNIS, Nemesis, BodySlide, DynDOLOD) sitting at the wrong priority and getting overwritten by the very mods it was generated to unify. The game doesn't crash. It just quietly uses the wrong files.
 
 ## Read-only. No network. No telemetry.
 
-This tool never writes, modifies, or deletes anything in your MO2 install.
-It makes no network calls of any kind. Absolutely no Nexus API, no update checks,
-nothing. It only reads `modlist.txt`, `plugins.txt`, `loadorder.txt`,
-`meta.ini` files, and plugin headers (first ~4KB only, never a full
-plugin). Modders are justifiably wary of tools that touch their setups;
-this one only looks.
+This tool never writes, modifies, or deletes anything in your MO2 install. It makes no network calls of any kind. Absolutely no Nexus API, no update checks, nothing. It only reads `modlist.txt`, `plugins.txt`, `loadorder.txt`, `meta.ini` files, and plugin headers (first ~4KB only, never a full plugin). Modders are justifiably wary of tools that touch their setups; this one only looks.
 
-Heads up that I'm going to see your mod list if your apart of helping me collect data, NSFW picks and all. No judgment from me. We all mod for our own reasons and yours are safe with me. Send your build over exactly as it is, questionable armor mods included, because that messy real setup is precisely the kind I need. 
+When you run it, the report prints right there in the terminal window you ran it from. That's the whole tool: you run a command, it reads your setup, and it prints what it found. If you want to keep that report, add `--json findings.json` or `--markdown report.md` to your command and it'll save the report as that file (wherever you're running from). It never creates, changes, or deletes anything inside your actual MO2 install.
 
-**MO2 itself holds `modlist.txt` and `plugins.txt` in memory while running
-and rewrites them on exit.** This tool only reads them, so it's safe to run
-while MO2 is open -- but if a future version ever adds a write feature,
-MO2 will need to be closed first.
+If you're helping me test, these saved files are exactly what I need back. Send me the `findings.json` (or the `.md` if that's easier) and that's what lets me spot what's wrong and keep improving the tool.
+
+**MO2 itself holds `modlist.txt` and `plugins.txt` in memory while running and rewrites them on exit.** This tool only reads them, so it's safe to run while MO2 is open -- but if a future version ever adds a write feature, MO2 will need to be closed first. Hopefully I get there; it would be very cool to have an automatic sort option.
+
+## A note for testers
+
+Heads up that I'll see your mod list, NSFW picks and all. No judgment from me. We all mod for our own reasons and yours are safe with me. Send your build over exactly as it is, questionable armor mods included.
+
+If you're not comfortable with that, you've got two options. You can uncheck your NSFW mods in the left pane before running, and those mods won't be analyzed or appear in the findings. Just know that changes how the auditor sees your list, so it'll report a bit differently. Or you can open the `findings.json` or `report.md` afterward and swap any mod names for something vague. Either way, please tell me what you did so I can read your data accurately. Thanks!
 
 ## Install
 
@@ -160,17 +163,17 @@ require touching check logic.
 
 ## Roadmap
 
-- **Phase 1** (done): the read-only standalone auditor. Validated against
+- **State 1** (done): the read-only standalone auditor. Validated against
   two real builds.
-- **Phase 2** (done): smarter checks. A mod-classification layer (mod types,
+- **State 2** (done): smarter checks. A mod-classification layer (mod types,
   confidence, reasons) feeding conflict directionality, Overwrite hygiene,
   and Creation Club awareness. Still read-only, still standalone, still
   standard library only.
-- **Phase 3** (not built yet): an MO2 plugin (`IPluginTool`) that builds
+- **Next Step** (not built yet): an MO2 plugin (`IPluginTool`) that builds
   `Setup` from the live `IOrganizer`/`IModList` API instead of parsing files
   from disk, with a Qt results dialog. Read-only still: it may *propose*
   priority changes, but never reorders anything itself.
-- **Phase 4** (not built yet): **FORGE** -- the fix engine, where the tool
+- **End Goal** (not built yet): **FORGE** -- the fix engine, where the tool
   first acts on a finding. Each finding offers ranked actions with the
   highest-confidence one marked `[Recommended]`; the user always chooses.
   Fixes requiring judgment are never applied automatically.
